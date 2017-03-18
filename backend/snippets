@@ -1,0 +1,9 @@
+## Check if file exists
+if (os.path.exists("test.txt")):
+	print "File exists"
+else:
+	print "File does not exist"
+
+## Proper exception handled writing to file:
+with open('file.txt', 'w') as f:
+	f.write('Hello')
