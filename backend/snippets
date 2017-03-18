@@ -7,3 +7,12 @@ else:
 ## Proper exception handled writing to file:
 with open('file.txt', 'w') as f:
 	f.write('Hello')
+
+
+## Concatenation method:
+ffmpeg -i "concat:intermediate1.ts|intermediate2.ts" -c copy -bsf:a aac_adtstoasc output.mp4
+
+subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(list_of_intermediary_files), '-c', 'copy', '-bsf:a', 'aac_adtstoasc', 'output.mp4'])
+
+testConcatString = "../data/IAmGoingToFight.ts|../data/IAmGoingToFight.ts|../data/IAmGoingToFight.ts|../data/IAmGoingToFight.ts|../data/China.ts|../data/China.ts|../data/China.ts|../data/China.ts|"
+subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(testConcatString), '-c', 'copy', '-bsf:a', 'aac_adtstoasc', '../data/output.mp4'])

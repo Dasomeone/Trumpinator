@@ -3,6 +3,7 @@ import os
 import argparse
 import string
 import sqlite3
+import subprocess
 
 ## Setup SQLite connection and cursor
 conn = sqlite3.connect('../trump.db')
@@ -40,8 +41,18 @@ for w in input_list:
 # Debug # Print location list
 print location_list	
 
-# Check if words are missing. If they are flag it.
-if None in location_list:
-	print "Nonetype in locationlist" ## TODO: ADD FLAG.
+# Sanitize list from "Nonetype" values. 
+location_list = list(filter(lambda a: a != None, location_list))
+
+# Concatenate the location list into something usable by FFMPEG
+concat_string = "|".join(location_list)
+
+# DEBUG #
+print concat_string
+
+subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(concat_string), '-c', 'copy', '-y', '-bsf:a', 'aac_adtstoasc', '../data/output.mp4'])
+
 
 conn.commit()  # Gracefully end connection with server.
+conn.close()
+
