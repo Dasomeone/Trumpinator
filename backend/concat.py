@@ -32,7 +32,11 @@ for w in input_list:
 	c.execute("SELECT location FROM words WHERE word=?", (w,))  # (w,) is a hack
 	result = c.fetchall()  # Fetch the result (Single result)
 	if(result != None): 
-		chosen_loc = random.choice(result)[0] # If there is more than one of the same word, pick one at random.
+		if len(result) > 1:
+			chosen_loc = random.choice(result)[0] # If there is more than one of the same word, pick one at random.
+		else:
+			print result
+			#chosen_loc = result
 		location_list.append("{}".format(chosen_loc))
 
 	# DEBUG #

@@ -43,7 +43,7 @@ for r in data['results']:
 			# Normalization Subprocess calls
 			#subprocess.call(['ffmpeg-normalize', '-voufm', '-l', '-5', '{}.mp4'.format(file_out)])
 			#subprocess.call(['ffmpeg-normalize', '--merge', '--no-prefix', '--force', '--max', '--level', '-5', '{}.mp4'.format(file_out)])
-			subprocess.call(['ffmpeg', '-y', '-i', '{}.mp4'.format(file_out), '-c', 'copy', '-bsf:v', 'h264_mp4toannexb', '-f', 'mpegts', 'scale=-1:720', '{}.ts'.format(file_out)]) ## Convert subcut to MPEGTS
+			subprocess.call(['ffmpeg', '-y', '-i', '{}.mp4'.format(file_out), '-c', 'copy', '-bsf:v', 'h264_mp4toannexb', '-f', 'mpegts', '{}.ts'.format(file_out)]) ## Convert subcut to MPEGTS
 			subprocess.call(['rm', '{}.mp4'.format(file_out)])
 			c.execute("INSERT INTO words (word, location) VALUES (?, ?)", (word[0].lower(), SQL_FILE_OUT,))	
 
