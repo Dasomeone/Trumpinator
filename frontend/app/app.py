@@ -51,7 +51,7 @@ class parserClass:
 		# DEBUG #
 		#print concat_string
 
-		subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(concat_string), '-c', 'copy', '-y', '-bsf:a', 'aac_adtstoasc', '../data/output.mp4'])
+		subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(concat_string), '-c', 'copy', '-y', '-bsf:a', 'aac_adtstoasc', '/static/output.mp4'])
 
 
 		self.conn.commit()  # Gracefully end connection with server.
@@ -72,11 +72,14 @@ def main():
 def trumpit():
 	userinput = request.form['trumpit']
 	if parserClass(userinput):
-		return "Executed successfully"
+		return render_template('video.html')
 	else:
 		return "Did not execute successfully"
 
 
+@app.route('/test/', methods=['POST'])
+def test():
+	return render_template('test.html')
 
 
 
