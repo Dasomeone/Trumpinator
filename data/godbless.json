@@ -1,0 +1,61 @@
+{
+   "results": [
+      {
+         "alternatives": [
+            {
+               "timestamps": [
+                  [
+                     "and", 
+                     0.06, 
+                     0.35
+                  ], 
+                  [
+                     "may", 
+                     0.35, 
+                     0.54
+                  ], 
+                  [
+                     "god", 
+                     0.54, 
+                     1.08
+                  ], 
+                  [
+                     "bless", 
+                     1.08, 
+                     1.8
+                  ], 
+                  [
+                     "the", 
+                     2.02, 
+                     2.17
+                  ], 
+                  [
+                     "United", 
+                     2.17, 
+                     2.86
+                  ], 
+                  [
+                     "States", 
+                     2.86, 
+                     3.61
+                  ], 
+                  [
+                     "of", 
+                     3.8, 
+                     4.0
+                  ], 
+                  [
+                     "America", 
+                     4.0, 
+                     4.65
+                  ]
+               ], 
+               "confidence": 0.999, 
+               "transcript": "and may god bless the United States of America "
+            }
+         ], 
+         "final": true
+      }
+   ], 
+   "result_index": 0
+}

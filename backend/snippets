@@ -16,3 +16,10 @@ subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(list_of_intermediary_files),
 
 testConcatString = "../data/IAmGoingToFight.ts|../data/IAmGoingToFight.ts|../data/IAmGoingToFight.ts|../data/IAmGoingToFight.ts|../data/China.ts|../data/China.ts|../data/China.ts|../data/China.ts|"
 subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(testConcatString), '-c', 'copy', '-bsf:a', 'aac_adtstoasc', '../data/output.mp4'])
+
+
+for r in data['results']:
+	print r['alternatives'][0]['confidence']
+
+
+subprocess.call(['ffmpeg', '-ss', '{}'.format(MEDIA_IN_FILE), '-t', '{}'.format(DURATION) '-c', 'copy', '-bsf:v', 'h264_mp4toannexb', '-f', 'mpegts', '{}.ts'.format(WORD)])
