@@ -1,15 +1,60 @@
-<html>
-  <head>
-    {% if title %}
-    <title>{{ title }} - fakenews</title>
-    {% else %}
-    <title>Welcome to fakenews</title>
-    {% endif %}
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Trumpitr</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+ 
+</head>
+ 
 <body>
-    <h1>Hi, {{ user.nickname }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
-  </body>
+ 
+    <div class="container">
+        <div class="header">
+            <h3 class="text-muted">Hack The Burgh 2017</h3>
+        </div>
+ 
+        <div class="jumbotron">
+            <img class="img-responsive" src='/static/trumpit.png'>
+            <h1>Trumpit</h1>
+            <p class="lead"></p>
+            <div class="form-group">
+                <label for="usr">We have the best words, folks:</label>
+                <input type="text" name="trumpit" id="trumpit" class="form-control" placeholder="Enter your text here:" required autofocus>
+            </div>
+            <p><a class="btn btn-lg btn-success" href="" role="button">Trump It!</a></p>
+            <h2> We're gonna build a database, and Amazon is gonna pay for it. </h2>
+        </div>
+ 
+        <div class="row marketing">
+
+            <div class="col-lg-6 col-xs-6">
+                <h3>Make Donald Trump say anything you want. </h3>
+                <p>Nearly anything, anyway.</p> 
+            </div>
+
+
+            
+            <div class="col-lg-6 col-xs-6">
+                <h3>Express Yourself, Bigly</h3>
+                <p>Channel your inner Cassetteboy. Be creative. </p>
+ 
+            </div>
+ 
+        </div>
+ 
+        <footer class="footer">
+            <p>&copy; Clear Your History 2017</p>
+        </footer>
+ 
+    </div>
+</body>
+ 
 </html>
