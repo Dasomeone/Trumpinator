@@ -13,13 +13,12 @@ args = parser.parse_args()
 
 word = args.textstring
 
-c.execute("SELECT count(word) FROM words WHERE word=?", (word,))  # (w,) is a hack
-result = c.fetchone()  # Fetch the result (Single result)
-if(result != None or result[0] == 0): 
-	# There is a result:
-	print("There are {} of word: {}".format(result[0], word))
-else:
-	print("Word: {} cannot be found in database".format(word))
+c.execute("SELECT word, count(word) FROM words WHERE word LIKE ? GROUP BY word", (word,))  # (w,) is a hack
+result = c.fetchall()  # Fetch the result (Single result)
+if(result != None): 
+	# There are results
+	for r in result:
+		print("{}:{}".format(r[0],r[1]))
 
 conn.commit()
 conn.close()
