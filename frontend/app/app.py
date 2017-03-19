@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, json, session, g, redirect, u
 from flask_wtf import Form
 from wtforms import TextField
 import sqlite3
+import ../scripts_bank/concat.py as concat
 
 class ContactForm(Form):
 	name = TextField("Name")
@@ -19,13 +20,10 @@ def main():
 
 @app.route('/trumpit/', methods=['POST'])
 def trumpit():
-	conn = sqlite3.connect('trump.db')
-	cursor = conn.cursor()
-	print("Database connection established successfully")
 	userinput = request.form['trumpit']
 
 	if userinput:
-		return json.dumps({'html':'<span> All fields good! </span>'})
+		return userinput)
 	else:
 		return json.dumps({'html': '<span> Enter the required fields</span>'})
 
