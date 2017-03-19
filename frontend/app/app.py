@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, json, session, g, redirect, u
 from flask_wtf import Form
 from wtforms import TextField
 import sqlite3
-import ../scripts_bank/concat.py as concat
+import ../scripts_bank/concat as concat
 
 class ContactForm(Form):
 	name = TextField("Name")
