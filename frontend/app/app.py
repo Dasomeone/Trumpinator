@@ -33,7 +33,10 @@ class parserClass:
 			self.c.execute("SELECT location FROM words WHERE word=?", (w,))  # (w,) is a hack
 			result = self.c.fetchall()  # Fetch the result (Single result)
 			if(result != None): 
-				chosen_loc = random.choice(result)[0] # If there is more than one of the same word, pick one at random.
+				if len(result) > 1:
+					chosen_loc = random.choice(result)[0] # If there is more than one of the same word, pick one at random.
+				else:
+					chosen_loc = result[0]
 				location_list.append("{}".format(chosen_loc))
 
 			# DEBUG #
@@ -51,7 +54,7 @@ class parserClass:
 		# DEBUG #
 		#print concat_string
 
-		subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(concat_string), '-c', 'copy', '-y', '-bsf:a', 'aac_adtstoasc', '/static/output.mp4'])
+		subprocess.call(['ffmpeg', '-i', 'concat:{}'.format(concat_string), '-c', 'copy', '-y', '-bsf:a', 'aac_adtstoasc', 'static/output.mp4'])
 
 
 		self.conn.commit()  # Gracefully end connection with server.
@@ -72,17 +75,9 @@ def main():
 def trumpit():
 	userinput = request.form['trumpit']
 	if parserClass(userinput):
-		return render_template('video.html')
+		return render_template('trumpit.html')
 	else:
 		return "Did not execute successfully"
-
-
-@app.route('/test/', methods=['POST'])
-def test():
-	return render_template('test.html')
-
-
-
 
 @app.teardown_appcontext
 def close_db(error):

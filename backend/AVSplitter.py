@@ -39,10 +39,13 @@ for r in data['results']:
 			print "Word: {}, Start_time: {}, End_time: {}, Duration: {}".format(word[0].lower(), start_time, word[2], duration)
 			file_out = '../data/intermediary/{}-{}'.format(word[0],start_time)
 			SQL_FILE_OUT = file_out + ".ts"
-			subprocess.call(['ffmpeg', '-y', '-ss', '{}'.format(start_time), '-i', '{}'.format(MEDIA_IN_FILE), '-t', '{}'.format(duration), '{}.mp4'.format(file_out)]) ## Export subcut
-			subprocess.call(['ffmpeg', '-y', '-i', '{}.mp4'.format(file_out), '-c', 'copy', '-bsf:v', 'h264_mp4toannexb', '-f', 'mpegts', '{}.ts'.format(file_out)])
+			subprocess.call(['ffmpeg', '-y', '-ss', '{}'.format(start_time), '-i', '{}'.format(MEDIA_IN_FILE), '-t', '{}'.format(duration), '{}.mp4'.format(file_out)]) ## Export subcut as MP4
+			# Normalization Subprocess calls
+			#subprocess.call(['ffmpeg-normalize', '-voufm', '-l', '-5', '{}.mp4'.format(file_out)])
+			#subprocess.call(['ffmpeg-normalize', '--merge', '--no-prefix', '--force', '--max', '--level', '-5', '{}.mp4'.format(file_out)])
+			subprocess.call(['ffmpeg', '-y', '-i', '{}.mp4'.format(file_out), '-c', 'copy', '-bsf:v', 'h264_mp4toannexb', '-f', 'mpegts', 'scale=-1:720', '{}.ts'.format(file_out)]) ## Convert subcut to MPEGTS
 			subprocess.call(['rm', '{}.mp4'.format(file_out)])
-			#c.execute("INSERT INTO words (word, location) VALUES (?, ?)", (word[0].lower(), SQL_FILE_OUT,))	
+			c.execute("INSERT INTO words (word, location) VALUES (?, ?)", (word[0].lower(), SQL_FILE_OUT,))	
 
 		# Confidence is good in the transcript
 		# Continue gathering dataset to split file.
